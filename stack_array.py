@@ -1,9 +1,9 @@
 class Stack:
-    def __init__(self, size):
+    def __init__(self):
         """Initialize the stack with a fixed size."""
-        self.stack = [None] * size
+        self.MAX_SIZE = 10  # Fixed size of the stack
+        self.stack = [None] * self.MAX_SIZE
         self.top = -1
-        self.capacity = size
 
     def push(self, item):
         """Push an item onto the stack."""
@@ -38,7 +38,7 @@ class Stack:
 
     def is_full(self):
         """Check if the stack is full."""
-        return self.top == self.capacity - 1
+        return self.top == self.MAX_SIZE - 1
 
     def display(self):
         """Display all items in the stack."""
@@ -49,8 +49,7 @@ class Stack:
 
 
 def main():
-    size = int(input("Enter the size of the stack: "))
-    stack = Stack(size)
+    stack = Stack()  # Create a stack with a fixed size
 
     while True:
         print("\nChoose an operation:")
