@@ -1,33 +1,39 @@
-import math  # Import the math module to use mathematical functions
+import math  # Importing the math module to use functions like radians, tan, and sqrt
 
-# Start an infinite loop to keep asking the user until valid input is given
-while True:
+while True:  # Start an infinite loop to keep asking for input until valid values are given
     try:
-        # Ask the user to input the horizontal distance
+        # Ask the user to input the horizontal distance (in meters)
         d = float(input("Enter the horizontal distance (in meters): "))
         
-        # Ask the user to input the angle of elevation
+        # Ask the user to input the angle of elevation (in degrees)
         a = float(input("Enter the angle of elevation (in degrees): "))
-        
-        # Check if the distance and angle are within acceptable ranges
+
+        # Check if the input values are within a valid range
         if d < 0 or a <= 0 or a >= 90:
             print("Enter a positive distance and an angle between 0° to 90°.\n")
         else:
-            # Convert the angle from degrees to radians (required for math functions)
+            # Convert the angle from degrees to radians because math.tan() uses radians
             a_rad = math.radians(a)
-            
-            # Calculate the vertical height using trigonometry: height = distance × tan(angle)
-            h = d * math.tan(a_rad)
-            
-            # Calculate the time it takes to fall from that height using the formula:
-            # t = √(2h / g), where g is gravity (9.8 m/s²)
-            t = math.sqrt((2 * h) / 9.8)
-            
-            # Display the calculated height and falling time, rounded to 2 decimal places
-            print(f"\nThe height ≈ {h:.2f} meters.")
-            print(f"The falling time ≈ {t:.2f} seconds.")
-            break  # Exit the loop since valid input and calculation are complete
 
-    # This block handles cases where the user enters non-numeric values
+            # Calculate the height of the object using trigonometry: h = d * tan(angle)
+            h = d * math.tan(a_rad)
+
+            # Acceleration due to gravity (in m/s²)
+            g = 9.8
+
+            # Calculate the time it takes to fall from the height h using the formula: t = √(2h/g)
+            t = math.sqrt((2 * h) / g)
+
+            # Calculate the final velocity just before hitting the ground: v = g * t
+            v = g * t
+
+            # Print the results rounded to 2 decimal places
+            print(f"\nThe height h ≈ {h:.2f} meters.")
+            print(f"The falling time t ≈ {t:.2f} seconds.")
+            print(f"The final velocity v  ≈ {v:.2f} m/s.")
+            
+            # Break the loop since we have valid input and successful calculation
+            break
     except ValueError:
+        # This message shows up if the user enters a non-numerical value
         print("Invalid input. Please enter numerical values.\n")
